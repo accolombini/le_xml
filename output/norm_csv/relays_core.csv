@@ -1,0 +1,5 @@
+relay_id,manufacturer,model,series,relay_type,voltage_class_kv,frequency_hz,config_date,protected_transformer_id,protected_feeder_id,protected_load_id
+RL-TR-01,GENERIC,TRF-REL-87T,,Transformer,69/13.8,60.0,2020-01-10,TR-01,,
+RL-TR-02,GENERIC,TRF-REL-87T,,Transformer,69/13.8,60.0,2020-01-10,TR-02,,
+RL-0001,SCHNEIDER ELECTRIC,P122,Easergy,Overcurrent,13.8,60.0,2021-03-17,,FEED-MF-03,
+RL-0002,GENERAL ELECTRIC,P241,MiCOM,Motor,13.8,60.0,2019-08-15,,,LOAD-MOTOR-MP20

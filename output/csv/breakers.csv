@@ -1,0 +1,9 @@
+@id,@name,@locationBus,@ratedCurrentA,@interruptingCapacityKA,@controlledByRelayId
+52-TR-01-HV,Disjuntor HV TR-01,BUS-69kV,400,25,RL-TR-01
+52-TR-01-LV,Disjuntor LV TR-01,BUS-13k8-MAIN,1600,25,RL-TR-01
+52-TR-02-HV,Disjuntor HV TR-02,BUS-69kV,400,25,RL-TR-02
+52-TR-02-LV,Disjuntor LV TR-02,BUS-13k8-MAIN,1600,25,RL-TR-02
+52-MF-01,Disjuntor Alimentador MF-01,BUS-13k8-MAIN,1250,20,RL-0003
+52-MF-02,Disjuntor Alimentador MF-02,BUS-13k8-MAIN,1250,20,RL-0004
+52-MF-03B1,Disjuntor Alimentador MF-03B1,BUS-13k8-MAIN,800,20,RL-0001
+52-MP-20,Disjuntor Motor MP-20,BUS-13k8-MAIN,400,20,RL-0002

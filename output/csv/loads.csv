@@ -1,0 +1,3 @@
+@id,@name,@connectedFeederId,@ratedPowerMVA,@powerFactor,@type,@ratedKW,@ratedVoltageKV,@ratedCurrentA
+LOAD-PROC-A,Carga de Processo A,FEED-MF-03,5.0,0.9,Processo,,,
+LOAD-MOTOR-MP20,Motor Crítico Bomba MP-20,FEED-MF-02,,,MotorInducao,2800,13.8,280.0

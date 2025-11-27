@@ -1,0 +1,10 @@
+curve_id,function_id,family,type,standard,pickup_pu,pickup_a,time_dial,min_time_sec,parametric,extra_json
+CUR-RL-TR-01-87T1-01,87T1,Differential,DualSlope,IEC 60255-26,,,,,True,
+CUR-RL-TR-01-51-BU-TR1-01,51-BU-TR1,IEC,StandardInverse,IEC 60255-151,1.2,1254.0,0.2,0.5,True,
+CUR-RL-TR-02-87T2-01,87T2,Differential,DualSlope,IEC 60255-26,,,,,True,
+CUR-RL-0001-50P1-01,50P1,DefiniteTime,Instantaneous,IEC 60255-151,3.5,70.0,0.0,0.1,True,
+CUR-RL-0001-51P1-01,51P1,IEC,VeryInverse,IEC 60255-151,1.2,24.0,0.2,0.3,True,
+CUR-RL-0001-51N1-01,51N1,IEC,StandardInverse,IEC 60255-151,0.2,4.0,0.25,0.4,True,
+CUR-RL-0002-49M1-01,49M1,Thermal,MotorOverload,IEC 60255-8,,280.0,,,True,"{""tripClass"": ""20""}"
+CUR-RL-0002-51M1-01,51M1,IEC,StandardInverse,IEC 60255-151,1.1,30.8,0.3,0.4,True,
+CUR-RL-0002-51N_MOTOR-01,51N_MOTOR,DefiniteTime,EarthFault_VT,IEC 60255-151,,,,,True,"{""pickupVoltage"": ""10.0"", ""timeSeconds"": ""0.50""}"

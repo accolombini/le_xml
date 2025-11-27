@@ -1,0 +1,3 @@
+@id,@name,@nominalKV,@shortCircuitMVA,@groundingType
+BUS-69kV,Barramento 69 kV,69.0,500,Solid
+BUS-13k8-MAIN,"Barramento Principal 13,8 kV",13.8,350,ResistanceGrounded

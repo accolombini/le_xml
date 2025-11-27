@@ -1,0 +1,3 @@
+@id,@name,@primaryKV,@secondaryKV,@ratedMVA,@vectorGroup,@impedancePercent,@xOverR,@fromBus,@toBus,Protection
+TR-01,"TR 69/13,8 kV - T1",69.0,13.8,25.0,Dyn1,8.0,10.0,BUS-69kV,BUS-13k8-MAIN,"{'@mainRelayId': 'RL-TR-01', '@hvBreakerId': '52-TR-01-HV', '@lvBreakerId': '52-TR-01-LV'}"
+TR-02,"TR 69/13,8 kV - T2",69.0,13.8,25.0,Dyn1,8.0,10.0,BUS-69kV,BUS-13k8-MAIN,"{'@mainRelayId': 'RL-TR-02', '@hvBreakerId': '52-TR-02-HV', '@lvBreakerId': '52-TR-02-LV'}"

@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProtectionDataset xmlns="urn:petrobras:protecai:relay:1.0">
+    <Context>
+        <Project name="PETRO_ProtecAI" version="1.0"/>
+        <Company name="PETROBRAS"/>
+        <Site type="Refinaria" code="REF01" name="Refinaria Exemplo 13k8"/>
+        <System voltageKV="13.8" frequencyHz="60.0"/>
+        <ExportInfo
+            tool="ProtecAI_Extract"
+            schemaVersion="1.0"
+            generatedAt="2025-11-26T15:00:00-03:00"
+        />
+    </Context>
+
+    <!-- ========================= SUBESTAÇÃO / TOPOLOGIA ========================= -->
+    <Substation id="REF01-SE-13k8" name="SE Principal 13,8 kV">
+        <Buses>
+            <Bus
+                id="BUS-69kV"
+                name="Barramento 69 kV"
+                nominalKV="69.0"
+                shortCircuitMVA="500"
+                groundingType="Solid"
+            />
+            <Bus
+                id="BUS-13k8-MAIN"
+                name="Barramento Principal 13,8 kV"
+                nominalKV="13.8"
+                shortCircuitMVA="350"
+                groundingType="ResistanceGrounded"
+            />
+        </Buses>
+
+        <Transformers>
+            <Transformer
+                id="TR-01"
+                name="TR 69/13,8 kV - T1"
+                primaryKV="69.0"
+                secondaryKV="13.8"
+                ratedMVA="25.0"
+                vectorGroup="Dyn1"
+                impedancePercent="8.0"
+                xOverR="10.0"
+                fromBus="BUS-69kV"
+                toBus="BUS-13k8-MAIN"
+            >
+                <Protection
+                    mainRelayId="RL-TR-01"
+                    hvBreakerId="52-TR-01-HV"
+                    lvBreakerId="52-TR-01-LV"
+                />
+            </Transformer>
+
+            <Transformer
+                id="TR-02"
+                name="TR 69/13,8 kV - T2"
+                primaryKV="69.0"
+                secondaryKV="13.8"
+                ratedMVA="25.0"
+                vectorGroup="Dyn1"
+                impedancePercent="8.0"
+                xOverR="10.0"
+                fromBus="BUS-69kV"
+                toBus="BUS-13k8-MAIN"
+            >
+                <Protection
+                    mainRelayId="RL-TR-02"
+                    hvBreakerId="52-TR-02-HV"
+                    lvBreakerId="52-TR-02-LV"
+                />
+            </Transformer>
+        </Transformers>
+
+        <Feeders>
+            <Feeder
+                id="FEED-MF-01"
+                name="Alimentador MF-01 - Processo Crítico"
+                fromBus="BUS-13k8-MAIN"
+                breakerId="52-MF-01"
+                relayId="RL-0003"
+            />
+            <Feeder
+                id="FEED-MF-02"
+                name="Alimentador MF-02 - Bombas / Motores"
+                fromBus="BUS-13k8-MAIN"
+                breakerId="52-MF-02"
+                relayId="RL-0004"
+            />
+            <Feeder
+                id="FEED-MF-03"
+                name="Alimentador MF-03 - Serviços Gerais / Processo"
+                fromBus="BUS-13k8-MAIN"
+                breakerId="52-MF-03B1"
+                relayId="RL-0001"
+            />
+        </Feeders>
+
+        <Loads>
+            <Load
+                id="LOAD-PROC-A"
+                name="Carga de Processo A"
+                connectedFeederId="FEED-MF-03"
+                ratedPowerMVA="5.0"
+                powerFactor="0.9"
+                type="Processo"
+            />
+            <Load
+                id="LOAD-MOTOR-MP20"
+                name="Motor Crítico Bomba MP-20"
+                connectedFeederId="FEED-MF-02"
+                ratedKW="2800"
+                ratedVoltageKV="13.8"
+                ratedCurrentA="280.0"
+                type="MotorInducao"
+            />
+        </Loads>
+
+        <Breakers>
+            <!-- Transformadores -->
+            <Breaker
+                id="52-TR-01-HV"
+                name="Disjuntor HV TR-01"
+                locationBus="BUS-69kV"
+                ratedCurrentA="400"
+                interruptingCapacityKA="25"
+                controlledByRelayId="RL-TR-01"
+            />
+            <Breaker
+                id="52-TR-01-LV"
+                name="Disjuntor LV TR-01"
+                locationBus="BUS-13k8-MAIN"
+                ratedCurrentA="1600"
+                interruptingCapacityKA="25"
+                controlledByRelayId="RL-TR-01"
+            />
+            <Breaker
+                id="52-TR-02-HV"
+                name="Disjuntor HV TR-02"
+                locationBus="BUS-69kV"
+                ratedCurrentA="400"
+                interruptingCapacityKA="25"
+                controlledByRelayId="RL-TR-02"
+            />
+            <Breaker
+                id="52-TR-02-LV"
+                name="Disjuntor LV TR-02"
+                locationBus="BUS-13k8-MAIN"
+                ratedCurrentA="1600"
+                interruptingCapacityKA="25"
+                controlledByRelayId="RL-TR-02"
+            />
+
+            <!-- Alimentadores -->
+            <Breaker
+                id="52-MF-01"
+                name="Disjuntor Alimentador MF-01"
+                locationBus="BUS-13k8-MAIN"
+                ratedCurrentA="1250"
+                interruptingCapacityKA="20"
+                controlledByRelayId="RL-0003"
+            />
+            <Breaker
+                id="52-MF-02"
+                name="Disjuntor Alimentador MF-02"
+                locationBus="BUS-13k8-MAIN"
+                ratedCurrentA="1250"
+                interruptingCapacityKA="20"
+                controlledByRelayId="RL-0004"
+            />
+            <Breaker
+                id="52-MF-03B1"
+                name="Disjuntor Alimentador MF-03B1"
+                locationBus="BUS-13k8-MAIN"
+                ratedCurrentA="800"
+                interruptingCapacityKA="20"
+                controlledByRelayId="RL-0001"
+            />
+
+            <!-- Motor -->
+            <Breaker
+                id="52-MP-20"
+                name="Disjuntor Motor MP-20"
+                locationBus="BUS-13k8-MAIN"
+                ratedCurrentA="400"
+                interruptingCapacityKA="20"
+                controlledByRelayId="RL-0002"
+            />
+        </Breakers>
+    </Substation>
+
+    <!-- ========================= RELÉS / PROTEÇÃO ========================= -->
+    <Relays>
+
+        <!-- RELÉS DE TRANSFORMADOR (modelo simplificado para POC) -->
+        <Relay
+            id="RL-TR-01"
+            manufacturer="GENERIC"
+            model="TRF-REL-87T"
+            relayType="Transformer"
+            voltageClassKV="69/13.8"
+            frequencyHz="60.0"
+            configDate="2020-01-10"
+            protectedTransformerId="TR-01"
+        >
+            <CTs>
+                <CT
+                    id="CT-HV"
+                    location="HV"
+                    phase="3F"
+                    primaryA="300"
+                    secondaryA="5"
+                    class="5P20"
+                    burdenVA="15"
+                    coreId="Core-HV-87T"
+                />
+                <CT
+                    id="CT-LV"
+                    location="LV"
+                    phase="3F"
+                    primaryA="1045"
+                    secondaryA="5"
+                    class="5P20"
+                    burdenVA="15"
+                    coreId="Core-LV-87T"
+                />
+            </CTs>
+
+            <ProtectionFunctions>
+                <Function
+                    id="87T1"
+                    name="Differential Transformer Protection"
+                    ansiCode="87T"
+                    enabled="true"
+                    zone="Z-TR-01"
+                    tripOutput="52-TR-01-HV,52-TR-01-LV"
+                    ctRef="CT-HV,CT-LV"
+                >
+                    <Settings>
+                        <PickupPerUnit pu="0.30"/>
+                        <Slope1 percent="25.0"/>
+                        <Slope2 percent="40.0"/>
+                        <MinOperateCurrent pu="0.2"/>
+                    </Settings>
+                    <Curve family="Differential" type="DualSlope" standard="IEC 60255-26"
+                           parametric="true"/>
+                    <CurvePoints base="pu">
+                        <Point multiple="0.2" timeSeconds="0.10"/>
+                        <Point multiple="0.5" timeSeconds="0.10"/>
+                        <Point multiple="1.0" timeSeconds="0.05"/>
+                    </CurvePoints>
+                </Function>
+
+                <Function
+                    id="51-BU-TR1"
+                    name="Backup Overcurrent LV"
+                    ansiCode="51"
+                    enabled="true"
+                    zone="Z-TR-01"
+                    tripOutput="52-TR-01-LV"
+                    ctRef="CT-LV"
+                >
+                    <Settings>
+                        <Pickup currentPU="1.20" currentA="1254.0" unit="In"/>
+                        <Curve family="IEC" type="StandardInverse"
+                               standard="IEC 60255-151"
+                               pickupPU="1.20"
+                               pickupA="1254.0"
+                               timeDial="0.20"
+                               minTimeSeconds="0.50"
+                               parametric="true"/>
+                    </Settings>
+                    <CurvePoints base="In">
+                        <Point multiple="2.0" timeSeconds="1.80"/>
+                        <Point multiple="4.0" timeSeconds="0.80"/>
+                        <Point multiple="6.0" timeSeconds="0.55"/>
+                        <Point multiple="8.0" timeSeconds="0.42"/>
+                        <Point multiple="10.0" timeSeconds="0.35"/>
+                    </CurvePoints>
+                </Function>
+            </ProtectionFunctions>
+        </Relay>
+
+        <Relay
+            id="RL-TR-02"
+            manufacturer="GENERIC"
+            model="TRF-REL-87T"
+            relayType="Transformer"
+            voltageClassKV="69/13.8"
+            frequencyHz="60.0"
+            configDate="2020-01-10"
+            protectedTransformerId="TR-02"
+        >
+            <!-- Para POC, pode-se assumir configuração similar à de TR-01 -->
+            <CTs>
+                <CT
+                    id="CT-HV"
+                    location="HV"
+                    phase="3F"
+                    primaryA="300"
+                    secondaryA="5"
+                    class="5P20"
+                    burdenVA="15"
+                    coreId="Core-HV-87T"
+                />
+                <CT
+                    id="CT-LV"
+                    location="LV"
+                    phase="3F"
+                    primaryA="1045"
+                    secondaryA="5"
+                    class="5P20"
+                    burdenVA="15"
+                    coreId="Core-LV-87T"
+                />
+            </CTs>
+            <ProtectionFunctions>
+                <Function
+                    id="87T2"
+                    name="Differential Transformer Protection"
+                    ansiCode="87T"
+                    enabled="true"
+                    zone="Z-TR-02"
+                    tripOutput="52-TR-02-HV,52-TR-02-LV"
+                    ctRef="CT-HV,CT-LV"
+                >
+                    <Settings>
+                        <PickupPerUnit pu="0.30"/>
+                        <Slope1 percent="25.0"/>
+                        <Slope2 percent="40.0"/>
+                        <MinOperateCurrent pu="0.2"/>
+                    </Settings>
+                    <Curve family="Differential" type="DualSlope" standard="IEC 60255-26"
+                           parametric="true"/>
+                    <CurvePoints base="pu">
+                        <Point multiple="0.2" timeSeconds="0.10"/>
+                        <Point multiple="0.5" timeSeconds="0.10"/>
+                        <Point multiple="1.0" timeSeconds="0.05"/>
+                    </CurvePoints>
+                </Function>
+            </ProtectionFunctions>
+        </Relay>
+
+        <!-- RELÉ 1: P122 – Alimentador MF-03B1 (Refinaria) -->
+        <Relay
+            id="RL-0001"
+            manufacturer="SCHNEIDER ELECTRIC"
+            model="P122"
+            series="Easergy"
+            relayType="Overcurrent"
+            fileType="PDF"
+            originalFormat="EasergyStudio_PDF"
+            criticalLoad="true"
+            voltageClassKV="13.8"
+            frequencyHz="60.0"
+            configDate="2021-03-17"
+            protectedFeederId="FEED-MF-03"
+        >
+            <Location
+                substationCode="SE01"
+                substationName="SE Principal 13k8"
+                bayId="MF-03B1"
+                bayType="Feeder"
+                singleLineRef="SE01-MF-03B1"
+            />
+
+            <SourceFiles>
+                <File
+                    path="inputs/pdf/P122_52-MF-03B1_2021-03-17.pdf"
+                    hashSha256="d41d8cd98f00b204e9800998ecf8427e"
+                    sizeBytes="245376"
+                />
+            </SourceFiles>
+
+            <CTs>
+                <CT
+                    id="CT1"
+                    location="LINE"
+                    phase="3F"
+                    primaryA="400"
+                    secondaryA="5"
+                    class="5P20"
+                    burdenVA="15"
+                    coreId="Core-OC"
+                />
+                <CT
+                    id="CT2"
+                    location="NEUTRAL"
+                    phase="N"
+                    primaryA="400"
+                    secondaryA="5"
+                    class="5P10"
+                    burdenVA="10"
+                    coreId="Core-EF"
+                />
+            </CTs>
+
+            <VTs vtDefined="false" vtEnabled="false"/>
+
+            <ProtectionFunctions>
+                <!-- 50 - Sobrecorrente instantânea -->
+                <Function
+                    id="50P1"
+                    name="Phase Overcurrent - Instantaneous"
+                    ansiCode="50"
+                    enabled="true"
+                    zone="Z-FEED-MF-03"
+                    directionality="NonDirectional"
+                    tripOutput="52-MF-03B1"
+                    ctRef="CT1"
+                >
+                    <Settings>
+                        <Pickup currentPU="3.50" currentA="70.0" unit="In"/>
+                        <TimeDef type="Definite" timeSeconds="0.10"/>
+                    </Settings>
+                    <Curve
+                        family="DefiniteTime"
+                        type="Instantaneous"
+                        standard="IEC 60255-151"
+                        pickupPU="3.50"
+                        pickupA="70.0"
+                        timeDial="0.00"
+                        minTimeSeconds="0.10"
+                        parametric="true"
+                    />
+                    <CurvePoints base="In">
+                        <Point multiple="3.5" timeSeconds="0.10"/>
+                        <Point multiple="5.0" timeSeconds="0.10"/>
+                        <Point multiple="8.0" timeSeconds="0.10"/>
+                    </CurvePoints>
+                </Function>
+
+                <!-- 51 - Sobrecorrente temporizada de fase -->
+                <Function
+                    id="51P1"
+                    name="Phase Overcurrent - Time Delay"
+                    ansiCode="51"
+                    enabled="true"
+                    zone="Z-FEED-MF-03"
+                    directionality="NonDirectional"
+                    tripOutput="52-MF-03B1"
+                    ctRef="CT1"
+                >
+                    <Settings>
+                        <Pickup currentPU="1.20" currentA="24.0" unit="In"/>
+                        <Curve
+                            family="IEC"
+                            type="VeryInverse"
+                            standard="IEC 60255-151"
+                            pickupPU="1.20"
+                            pickupA="24.0"
+                            timeDial="0.20"
+                            minTimeSeconds="0.30"
+                            parametric="true"
+                        />
+                    </Settings>
+                    <Selectivity>
+                        <DownstreamDevice id="RL-0003" element="Feeder_MF-01"/>
+                        <CoordinationMargin seconds="0.30"/>
+                    </Selectivity>
+                    <CurvePoints base="In">
+                        <Point multiple="2.0" timeSeconds="1.60"/>
+                        <Point multiple="4.0" timeSeconds="0.70"/>
+                        <Point multiple="6.0" timeSeconds="0.45"/>
+                        <Point multiple="8.0" timeSeconds="0.35"/>
+                        <Point multiple="10.0" timeSeconds="0.30"/>
+                    </CurvePoints>
+                </Function>
+
+                <!-- 50N/51N - Sobrecorrente residual -->
+                <Function
+                    id="51N1"
+                    name="Earth Fault Overcurrent"
+                    ansiCode="50N/51N"
+                    enabled="true"
+                    zone="Z-FEED-MF-03"
+                    directionality="NonDirectional"
+                    tripOutput="52-MF-03B1"
+                    ctRef="CT2"
+                >
+                    <Settings>
+                        <Pickup currentPU="0.20" currentA="4.0" unit="In"/>
+                        <Curve
+                            family="IEC"
+                            type="StandardInverse"
+                            standard="IEC 60255-151"
+                            pickupPU="0.20"
+                            pickupA="4.0"
+                            timeDial="0.25"
+                            minTimeSeconds="0.40"
+                            parametric="true"
+                        />
+                    </Settings>
+                    <CurvePoints base="In">
+                        <Point multiple="1.0" timeSeconds="2.50"/>
+                        <Point multiple="2.0" timeSeconds="1.20"/>
+                        <Point multiple="4.0" timeSeconds="0.60"/>
+                        <Point multiple="6.0" timeSeconds="0.42"/>
+                    </CurvePoints>
+                </Function>
+            </ProtectionFunctions>
+
+            <Parameters>
+                <Parameter
+                    name="THERMAL_MEMORY_ENABLED"
+                    group="GENERAL"
+                    type="bool"
+                    value="true"
+                />
+                <Parameter
+                    name="CT_CONNECTION"
+                    group="MEASUREMENT"
+                    type="enum"
+                    value="3-phase_3-wire"
+                />
+                <Parameter
+                    name="SYSTEM_NEUTRAL"
+                    group="SYSTEM"
+                    type="enum"
+                    value="ResistanceGrounded"
+                />
+            </Parameters>
+        </Relay>
+
+        <!-- RELÉ 2: P241 – Motor crítico MP-20 -->
+        <Relay
+            id="RL-0002"
+            manufacturer="GENERAL ELECTRIC"
+            model="P241"
+            series="MiCOM"
+            relayType="Motor"
+            fileType="PDF"
+            originalFormat="MiCOM_S1_PDF"
+            criticalLoad="true"
+            voltageClassKV="13.8"
+            frequencyHz="60.0"
+            configDate="2019-08-15"
+            protectedLoadId="LOAD-MOTOR-MP20"
+        >
+            <Location
+                substationCode="SE01"
+                substationName="SE Principal 13k8"
+                bayId="MP-20"
+                bayType="Motor"
+                singleLineRef="SE01-MP-20"
+            />
+
+            <SourceFiles>
+                <File
+                    path="inputs/pdf/P241_52-MP-20_2019-08-15.pdf"
+                    hashSha256="e3b0c44298fc1c149afbf4c8996fb924"
+                    sizeBytes="327680"
+                />
+            </SourceFiles>
+
+            <CTs>
+                <CT
+                    id="CT1"
+                    location="LINE"
+                    phase="3F"
+                    primaryA="300"
+                    secondaryA="5"
+                    class="5P10"
+                    burdenVA="10"
+                    coreId="Core-Motor"
+                />
+            </CTs>
+
+            <VTs vtDefined="true" vtEnabled="true">
+                <VT
+                    id="VT1"
+                    location="BUS"
+                    primaryKV="13.8"
+                    secondaryV="115"
+                    connection="Yg"
+                    burdenVA="100"
+                />
+            </VTs>
+
+            <ProtectionFunctions>
+                <!-- 49 - Sobrecarga térmica de motor -->
+                <Function
+                    id="49M1"
+                    name="Thermal Overload - Motor"
+                    ansiCode="49"
+                    enabled="true"
+                    zone="Z-MOTOR-MP20"
+                    tripOutput="52-MP-20"
+                    ctRef="CT1"
+                >
+                    <Settings>
+                        <FullLoadCurrent currentA="280.0"/>
+                        <ThermalTimeConstant minutes="20"/>
+                        <TripClass value="20"/>
+                        <ColdThermalCapacityUsed percent="0.0"/>
+                        <HotThermalCapacityAlarm percent="70.0"/>
+                        <HotThermalCapacityTrip percent="100.0"/>
+                    </Settings>
+                    <Curve
+                        family="Thermal"
+                        type="MotorOverload"
+                        standard="IEC 60255-8"
+                        pickupA="280.0"
+                        tripClass="20"
+                        parametric="true"
+                    />
+                    <CurvePoints base="A">
+                        <!-- Exemplos típicos de curva térmica -->
+                        <Point current="280.0" timeSeconds="∞"/>
+                        <Point current="350.0" timeSeconds="1800"/>
+                        <Point current="400.0" timeSeconds="900"/>
+                        <Point current="500.0" timeSeconds="300"/>
+                        <Point current="600.0" timeSeconds="120"/>
+                    </CurvePoints>
+                </Function>
+
+                <!-- 51 - Sobrecorrente temporizada de motor -->
+                <Function
+                    id="51M1"
+                    name="Motor Overcurrent - Time Delay"
+                    ansiCode="51"
+                    enabled="true"
+                    zone="Z-MOTOR-MP20"
+                    tripOutput="52-MP-20"
+                    ctRef="CT1"
+                >
+                    <Settings>
+                        <Pickup currentPU="1.10" currentA="30.8" unit="In"/>
+                        <Curve
+                            family="IEC"
+                            type="StandardInverse"
+                            standard="IEC 60255-151"
+                            pickupPU="1.10"
+                            pickupA="30.8"
+                            timeDial="0.30"
+                            minTimeSeconds="0.40"
+                            parametric="true"
+                        />
+                    </Settings>
+                    <Selectivity>
+                        <UpstreamDevice id="RL-0001" element="Feeder_MF-03B1"/>
+                        <CoordinationMargin seconds="0.35"/>
+                    </Selectivity>
+                    <CurvePoints base="In">
+                        <Point multiple="2.0" timeSeconds="1.80"/>
+                        <Point multiple="4.0" timeSeconds="0.80"/>
+                        <Point multiple="6.0" timeSeconds="0.55"/>
+                        <Point multiple="8.0" timeSeconds="0.42"/>
+                    </CurvePoints>
+                </Function>
+
+                <!-- 51N - Falta à terra via VT -->
+                <Function
+                    id="51N_MOTOR"
+                    name="Earth Fault via VT"
+                    ansiCode="51N"
+                    enabled="true"
+                    zone="Z-MOTOR-MP20"
+                    tripOutput="52-MP-20"
+                    ctRef="CT1"
+                >
+                    <Settings>
+                        <PickupVoltage voltsSecondary="10.0"/>
+                        <TimeDef type="Definite" timeSeconds="0.50"/>
+                    </Settings>
+                    <Curve
+                        family="DefiniteTime"
+                        type="EarthFault_VT"
+                        standard="IEC 60255-151"
+                        pickupVoltage="10.0"
+                        timeSeconds="0.50"
+                        parametric="true"
+                    />
+                    <CurvePoints base="Vsec">
+                        <Point multiple="1.0" timeSeconds="0.50"/>
+                        <Point multiple="2.0" timeSeconds="0.50"/>
+                    </CurvePoints>
+                </Function>
+            </ProtectionFunctions>
+
+            <Parameters>
+                <Parameter
+                    name="STARTER_TYPE"
+                    group="MOTOR"
+                    type="enum"
+                    value="SoftStarter"
+                />
+                <Parameter
+                    name="RESTART_BLOCK_TIME"
+                    group="MOTOR"
+                    type="seconds"
+                    value="300"
+                />
+                <Parameter
+                    name="THERMAL_MEMORY"
+                    group="MOTOR"
+                    type="bool"
+                    value="true"
+                />
+                <Parameter
+                    name="VT_SOURCE"
+                    group="MEASUREMENT"
+                    type="enum"
+                    value="BUS_VT"
+                />
+            </Parameters>
+        </Relay>
+
+        <!-- Espaço para futuros relés RL-0003, RL-0004 se desejar expandir -->
+    </Relays>
+</ProtectionDataset>

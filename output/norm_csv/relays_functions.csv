@@ -1,0 +1,10 @@
+relay_id,function_id,name,ansi_code,enabled,zone,directionality,trip_output,ct_ref
+RL-TR-01,87T1,Differential Transformer Protection,87T,true,Z-TR-01,,"52-TR-01-HV,52-TR-01-LV","CT-HV,CT-LV"
+RL-TR-01,51-BU-TR1,Backup Overcurrent LV,51,true,Z-TR-01,,52-TR-01-LV,CT-LV
+RL-TR-02,87T2,Differential Transformer Protection,87T,true,Z-TR-02,,"52-TR-02-HV,52-TR-02-LV","CT-HV,CT-LV"
+RL-0001,50P1,Phase Overcurrent - Instantaneous,50,true,Z-FEED-MF-03,NonDirectional,52-MF-03B1,CT1
+RL-0001,51P1,Phase Overcurrent - Time Delay,51,true,Z-FEED-MF-03,NonDirectional,52-MF-03B1,CT1
+RL-0001,51N1,Earth Fault Overcurrent,50N/51N,true,Z-FEED-MF-03,NonDirectional,52-MF-03B1,CT2
+RL-0002,49M1,Thermal Overload - Motor,49,true,Z-MOTOR-MP20,,52-MP-20,CT1
+RL-0002,51M1,Motor Overcurrent - Time Delay,51,true,Z-MOTOR-MP20,,52-MP-20,CT1
+RL-0002,51N_MOTOR,Earth Fault via VT,51N,true,Z-MOTOR-MP20,,52-MP-20,CT1

@@ -1,0 +1,10 @@
+setting_id,function_id,pickup_pu,pickup_a,time_dial,min_time_seconds,thermal_constant,full_load_current,trip_class,extra_json
+SET-RL-TR-01-87T1,87T1,0.3,,,,,,,"{""PickupPerUnit.pu"": ""0.30"", ""Slope1.percent"": ""25.0"", ""Slope2.percent"": ""40.0"", ""MinOperateCurrent.pu"": ""0.2""}"
+SET-RL-TR-01-51-BU-TR1,51-BU-TR1,,,,,,,,"{""Pickup.currentPU"": ""1.20"", ""Pickup.currentA"": ""1254.0"", ""Pickup.unit"": ""In""}"
+SET-RL-TR-02-87T2,87T2,0.3,,,,,,,"{""PickupPerUnit.pu"": ""0.30"", ""Slope1.percent"": ""25.0"", ""Slope2.percent"": ""40.0"", ""MinOperateCurrent.pu"": ""0.2""}"
+SET-RL-0001-50P1,50P1,,,,,,,,"{""Pickup.currentPU"": ""3.50"", ""Pickup.currentA"": ""70.0"", ""Pickup.unit"": ""In"", ""TimeDef.type"": ""Definite"", ""TimeDef.timeSeconds"": ""0.10""}"
+SET-RL-0001-51P1,51P1,,,,,,,,"{""Pickup.currentPU"": ""1.20"", ""Pickup.currentA"": ""24.0"", ""Pickup.unit"": ""In""}"
+SET-RL-0001-51N1,51N1,,,,,,,,"{""Pickup.currentPU"": ""0.20"", ""Pickup.currentA"": ""4.0"", ""Pickup.unit"": ""In""}"
+SET-RL-0002-49M1,49M1,,,,,,280.0,20.0,"{""FullLoadCurrent.currentA"": ""280.0"", ""ThermalTimeConstant.minutes"": ""20"", ""TripClass.value"": ""20"", ""ColdThermalCapacityUsed.percent"": ""0.0"", ""HotThermalCapacityAlarm.percent"": ""70.0"", ""HotThermalCapacityTrip.percent"": ""100.0""}"
+SET-RL-0002-51M1,51M1,,,,,,,,"{""Pickup.currentPU"": ""1.10"", ""Pickup.currentA"": ""30.8"", ""Pickup.unit"": ""In""}"
+SET-RL-0002-51N_MOTOR,51N_MOTOR,,,,,,,,"{""PickupVoltage.voltsSecondary"": ""10.0"", ""TimeDef.type"": ""Definite"", ""TimeDef.timeSeconds"": ""0.50""}"

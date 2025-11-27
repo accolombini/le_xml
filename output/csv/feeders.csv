@@ -1,0 +1,4 @@
+@id,@name,@fromBus,@breakerId,@relayId
+FEED-MF-01,Alimentador MF-01 - Processo Crítico,BUS-13k8-MAIN,52-MF-01,RL-0003
+FEED-MF-02,Alimentador MF-02 - Bombas / Motores,BUS-13k8-MAIN,52-MF-02,RL-0004
+FEED-MF-03,Alimentador MF-03 - Serviços Gerais / Processo,BUS-13k8-MAIN,52-MF-03B1,RL-0001
